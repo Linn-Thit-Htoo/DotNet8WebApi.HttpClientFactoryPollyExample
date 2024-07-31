@@ -1,9 +1,8 @@
 ﻿using DotNet8WebApi.HttpClientFactoryPollyExample.Models;
 
-namespace DotNet8WebApi.HttpClientFactoryPollyExample.Services
+namespace DotNet8WebApi.HttpClientFactoryPollyExample.Services;
+
+public interface IProductService
 {
-    public interface IProductService
-    {
-        Task<List<ProductModel>> GetProducts();
-    }
+    Task<List<ProductModel>> GetProducts();
 }
