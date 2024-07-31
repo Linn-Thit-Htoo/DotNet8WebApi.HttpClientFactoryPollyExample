@@ -1,12 +1,11 @@
 ﻿using Newtonsoft.Json;
 
-namespace DotNet8WebApi.HttpClientFactoryPollyExample
+namespace DotNet8WebApi.HttpClientFactoryPollyExample;
+
+public static class DevCode
 {
-    public static class DevCode
+    public static T DeserializeObject<T>(this string jsonStr)
     {
-        public static T DeserializeObject<T>(this string jsonStr)
-        {
-            return JsonConvert.DeserializeObject<T>(jsonStr)!;
-        }
+        return JsonConvert.DeserializeObject<T>(jsonStr)!;
     }
 }
