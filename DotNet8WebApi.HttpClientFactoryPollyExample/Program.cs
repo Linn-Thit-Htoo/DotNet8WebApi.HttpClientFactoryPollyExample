@@ -17,7 +17,8 @@ var retryPolicy = HttpPolicyExtensions
         sleepDurationProvider: attempt => TimeSpan.FromSeconds(3),
         onRetry: (outcome, timespan, retryAttempt, context) =>
         {
-            string message = $"Retrying due to: {outcome.Exception?.Message ?? outcome.Result.ReasonPhrase}. Wait time: {timespan}. Attempt: {retryAttempt}.";
+            string message =
+                $"Retrying due to: {outcome.Exception?.Message ?? outcome.Result.ReasonPhrase}. Wait time: {timespan}. Attempt: {retryAttempt}.";
             message.Dump();
         }
     );
@@ -29,13 +30,17 @@ var retryPolicy = HttpPolicyExtensions
 
 builder.Services.AddScoped<IProductService, ProductService>();
 
-builder.Services.AddHttpClient("ExampleClient", client =>
-{
-    client.BaseAddress = new Uri(builder.Configuration.GetSection("SampleUri").Value!);
-    client.DefaultRequestHeaders.Add("Accept", "application/json");
-    client.Timeout = TimeSpan.FromSeconds(30);
-})
-.AddPolicyHandler(retryPolicy);
+builder
+    .Services.AddHttpClient(
+        "ExampleClient",
+        client =>
+        {
+            client.BaseAddress = new Uri(builder.Configuration.GetSection("SampleUri").Value!);
+            client.DefaultRequestHeaders.Add("Accept", "application/json");
+            client.Timeout = TimeSpan.FromSeconds(30);
+        }
+    )
+    .AddPolicyHandler(retryPolicy);
 
 var app = builder.Build();
 
