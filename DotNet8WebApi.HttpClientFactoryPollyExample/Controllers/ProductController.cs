@@ -1,8 +1,5 @@
-﻿using DotNet8WebApi.HttpClientFactoryPollyExample.Models;
-using DotNet8WebApi.HttpClientFactoryPollyExample.Services;
-using Microsoft.AspNetCore.Http;
+﻿using DotNet8WebApi.HttpClientFactoryPollyExample.Services;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace DotNet8WebApi.HttpClientFactoryPollyExample.Controllers
 {
