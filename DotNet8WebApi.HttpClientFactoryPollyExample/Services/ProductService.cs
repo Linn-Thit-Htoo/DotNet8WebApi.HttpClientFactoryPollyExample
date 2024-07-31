@@ -21,7 +21,7 @@ namespace DotNet8WebApi.HttpClientFactoryPollyExample.Services
                 response.EnsureSuccessStatusCode();
                 string jsonStr = await response.Content.ReadAsStringAsync();
 
-                return JsonConvert.DeserializeObject<List<ProductModel>>(jsonStr)!;
+                return jsonStr.DeserializeObject<List<ProductModel>>()!;
             }
             catch (Exception ex)
             {
