@@ -1,32 +1,30 @@
 ﻿using DotNet8WebApi.HttpClientFactoryPollyExample.Models;
-using Newtonsoft.Json;
 
-namespace DotNet8WebApi.HttpClientFactoryPollyExample.Services
+namespace DotNet8WebApi.HttpClientFactoryPollyExample.Services;
+
+public class ProductService : IProductService
 {
-    public class ProductService : IProductService
+    private readonly IHttpClientFactory _httpClientFactory;
+
+    public ProductService(IHttpClientFactory httpClientFactory)
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        _httpClientFactory = httpClientFactory;
+    }
 
-        public ProductService(IHttpClientFactory httpClientFactory)
+    public async Task<List<ProductModel>> GetProducts()
+    {
+        try
         {
-            _httpClientFactory = httpClientFactory;
+            var client = _httpClientFactory.CreateClient("ExampleClient");
+            HttpResponseMessage response = await client.GetAsync("/products");
+            response.EnsureSuccessStatusCode();
+            string jsonStr = await response.Content.ReadAsStringAsync();
+
+            return jsonStr.DeserializeObject<List<ProductModel>>()!;
         }
-
-        public async Task<List<ProductModel>> GetProducts()
+        catch (Exception ex)
         {
-            try
-            {
-                var client = _httpClientFactory.CreateClient("ExampleClient");
-                HttpResponseMessage response = await client.GetAsync("/products");
-                response.EnsureSuccessStatusCode();
-                string jsonStr = await response.Content.ReadAsStringAsync();
-
-                return jsonStr.DeserializeObject<List<ProductModel>>()!;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            throw new Exception(ex.Message);
         }
     }
 }
