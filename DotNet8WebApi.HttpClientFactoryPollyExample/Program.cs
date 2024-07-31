@@ -1,6 +1,5 @@
 using DotNet8WebApi.HttpClientFactoryPollyExample.Services;
 using Dumpify;
-using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.Extensions.Http;
 
