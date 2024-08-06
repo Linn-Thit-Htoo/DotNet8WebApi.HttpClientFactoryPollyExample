@@ -1,6 +1,4 @@
-﻿using DotNet8WebApi.HttpClientFactoryPollyExample.Models;
-
-namespace DotNet8WebApi.HttpClientFactoryPollyExample.Services;
+﻿namespace DotNet8WebApi.HttpClientFactoryPollyExample.Services;
 
 public class ProductService : IProductService
 {
