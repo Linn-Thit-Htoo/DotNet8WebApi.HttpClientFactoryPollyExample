@@ -1,4 +1,3 @@
-using DotNet8WebApi.HttpClientFactoryPollyExample.Services;
 using Dumpify;
 using Polly;
 using Polly.Extensions.Http;

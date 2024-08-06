@@ -1,7 +1,4 @@
-﻿using DotNet8WebApi.HttpClientFactoryPollyExample.Services;
-using Microsoft.AspNetCore.Mvc;
-
-namespace DotNet8WebApi.HttpClientFactoryPollyExample.Controllers;
+﻿namespace DotNet8WebApi.HttpClientFactoryPollyExample.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
